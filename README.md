@@ -2,5 +2,10 @@
 This is a folder for the group
 
 ## Groups
-Dea, Hong..
-Hello world
+Memory: Nic, Dries
+
+Building: Manno, Hong
+
+Clearing: Belle, Matthijs
+
+IN/OUT: Joost, Dea 
