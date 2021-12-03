@@ -19,7 +19,7 @@ signal mem : mem_type;
 begin
 	ram_lat : process(address, write, data_in) is
 	begin
-		if write = '1' then
+		if (write = '1') then
 			mem(to_integer(unsigned(address))) <= data_in;
 		end if;
 	end process;
@@ -54,7 +54,7 @@ signal mem : mem_type;
 begin
 	ram_lat : process(address, write, data_in) is
 	begin
-		if write = '1' then
+		if (rising_edge(write)) then			-- rising_edge instead of write = '1' prevents all 3 registers from becoming the input of register 1
 			mem(to_integer(unsigned(address))) <= data_in;
 		end if;
 	end process;
@@ -140,11 +140,12 @@ port(	data_out_mine1:			in std_logic;
 end entity controller;
 
 architecture behaviour of controller is
-	signal address_surr_buffer, address_mine_buffer, data_in_surr_buffer, bit_3, row:	std_logic_vector(3 downto 0);
+	signal address_surr_buffer, data_in_surr_buffer, bit_3, row:	std_logic_vector(3 downto 0);
+	signal start_done:						std_logic;
 	type	control_state is (	reset_state,
-					new_cell,
+					load_mines,
+					load_mines_2,
 					read_left,
-					move_left,
 					read_middle,
 					read_right);
 	signal state, new_state:	control_state;
@@ -166,25 +167,50 @@ begin
 			when reset_state =>
 				row				<= (others => '0');
 				address_mine			<= (others => '0');
-				address_mine_buffer		<= (others => '0');
 				address_surr			<= (others => '0');
 				address_surr_buffer		<= (others => '0');
 				data_in_surr			<= (others => '0');
 				data_in_surr_buffer		<= (others => '0');
 				bit_3				<= (others => '0');
-				new_state			<= read_left;
-			when new_cell =>					-- when the row is not done
+				new_state			<= load_mines;
+			when load_mines =>	-- this state asks for the mines and then starts writing them
 				write_surr	<= '0';
-				if (address_surr_buffer < 15) then
-					address_surr			<= address_surr_buffer + '1';
-					address_surr_buffer		<= address_surr_buffer + '1';	-- you can't read output's in vhdl, so it is defined twice
-					new_state	<= read_left;
+				write_surrcalc	<= '0';
+				mine_addr_ask(3 downto 0)	<= data_in_surr_buffer;-- this signal is used here since every row it starts at 0, so it doesn't store
+											-- anything right now, allowing it to be used
+				if (start_done = '0') then
+					mine_addr_ask(7 downto 4)	<= row;	-- assuming upper left corner is 0, from left to right, up to down
 				else
-					if (write_surrread = '1') then
-						new_state	<= read_left;	
-						address_surr		<= (others => '0');
-						address_surr_buffer	<= (others => '0');
+					mine_addr_ask(7 downto 4)	<= row + 1;
+				end if;
+				if (mine_done = '1') then
+					write	<= '1';
+					new_state	<= load_mines_2;
+				end if;
+			when load_mines_2 =>	-- this state registers when the mines are written and stops the process when a row of mines has been written
+				write	<= '0';
+				if (mine_done = '0') then
+					if (data_in_surr_buffer < 15) then
+						address_mine	<= data_in_surr_buffer + 1;
+						new_state	<= load_mines;
+					else
+						address_mine		<= (others => '0');
+						if (start_done = '0') then	-- used when starting the program once only
+							start_done	<= '1';
+							new_state <= load_mines;
+						elsif (write_surrread = '1') then	-- will start calculating the next row after pixel writer is done with this row
+							new_state <= read_left;
+							address_surr		<= (others => '0');	-- at the beginning of a row, you start with the first cell
+							address_surr_buffer	<= (others => '0');
+						end if;
 					end if;
+				end if;
+				if (address_surr_buffer < 15) then -- this happens if it doesn't go to the next row
+					write_surr	<= '0';
+					write_surrcalc	<= '0';
+					address_surr			<= address_surr_buffer + '1';
+					address_surr_buffer		<= address_surr_buffer + '1';	-- you can't read outputs in vhdl, so it is defined twice
+					new_state	<= read_left;
 				end if;
 			when read_left =>
 				if (address_surr_buffer > 0) then	-- if it is 0, then there are no cells and thus no mines to the left
@@ -193,34 +219,26 @@ begin
 					data_in_surr_buffer	<= (others => '0');
 
 				end if;
-				mine_addr_ask(7 downto 4)	<= row + 2;	-- assuming upper left corner is 0, from left to right, up to down
-				mine_addr_ask(3 downto 0)	<= address_surr_buffer - 1;
-				if (mine_done = '1') then
-					write		<= '1';
-					new_state	<= move_left;
-				end if;
-			when move_left =>
-				write		<= '0';
-				address_mine		<= address_mine_buffer + 1;
-				address_mine_buffer	<= address_mine_buffer + 1;	-- you can't read output's in vhdl, so it is defined twice
+				address_mine		<= address_surr_buffer;
 				new_state	<= read_middle;
 			when read_middle =>
 				data_in_surr_buffer	<= data_in_surr_buffer + data_out_mine1 + data_out_mine3;
-				address_mine		<= address_mine_buffer + '1';
-				address_mine_buffer	<= address_mine_buffer + '1';	-- you can't read output's in vhdl, so it is defined twice
+				if (address_surr_buffer < 15) then
+					address_mine		<= address_surr_buffer + '1';
+				end if;	
 				new_state	<= read_right;
 			when read_right =>
-				write_surr	<= '1';		-- the value of data_in_surr calculated in this clock cycle needs to be written
-				new_state	<= new_cell;
+				write_surr	<= '1';		-- the value of data_in_surr calculated in this clock cycle needs to be written	
+				data_in_surr_buffer	<= (others => '0');	-- this allows the signal to be used in load_mine, data_in_surr isn't influenced
 				if (address_surr_buffer < 15) then	-- if it is 15, then there are no cells and thus no mines to the right
 					data_in_surr		<= data_in_surr_buffer + data_out_mine1 + data_out_mine2 + data_out_mine3;
-					address_mine		<= address_mine_buffer - 1;
-					address_mine_buffer	<= address_mine_buffer - 1;
-
+					address_mine		<= address_surr_buffer;
+					new_state		<= load_mines_2;
 				else
 					data_in_surr	<= data_in_surr_buffer;
-					row		<= row + 1;	-- this is the end of the now, it will now go to the next row
-					address_mine	<= (others => '0');
+					write_surrcalc	<= '1';		-- the signal that the row is calculated, control of surrounding address goes to pixel writer
+					new_state	<= load_mines;
+					row	<= row + 1;			-- this is the end of the row, it will now go to the next row	
 				end if;
 		end case;
 	end process;
