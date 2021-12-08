@@ -165,13 +165,16 @@ begin
 	begin
 		case state is
 			when reset_state =>
-				row				<= (others => '0');
-				address_mine			<= (others => '0');
-				address_surr			<= (others => '0');
-				address_surr_buffer		<= (others => '0');
-				data_in_surr			<= (others => '0');
-				data_in_surr_buffer		<= (others => '0');
-				bit_3				<= (others => '0');
+				row				<= (others => '0');	-- the current row it is working on
+				address_mine			<= (others => '0');	-- output signal, determined based on state and address_surr_buffer
+				address_surr			<= (others => '0');	-- output signal, address of cell who's surroundings are calculated
+				address_surr_buffer		<= (others => '0');	-- if <15, not at end of row (came from line 237), used in load_mines_2 to specify this
+											-- used because output signal can't be read in vhdl
+				data_in_surr			<= (others => '0');	-- output signal, the amount of surrounding mines (is calculated in its buffer)
+				data_in_surr_buffer		<= (others => '0');	-- this is also used in load_mines/load_mines_2 to specify what cell in the row
+											-- used because output signal can't be read in vhdl
+				bit_3				<= (others => '0');	-- always 000, used in line 220 so vhdl understands desired output
+				start_done			<= '0';			-- if this is 0, 2 rows instead of 1 will be loaded the first time
 				new_state			<= load_mines;
 			when load_mines =>	-- this state asks for the mines and then starts writing them
 				write_surr	<= '0';
@@ -229,7 +232,8 @@ begin
 				new_state	<= read_right;
 			when read_right =>
 				write_surr	<= '1';		-- the value of data_in_surr calculated in this clock cycle needs to be written	
-				data_in_surr_buffer	<= (others => '0');	-- this allows the signal to be used in load_mine, data_in_surr isn't influenced
+				data_in_surr_buffer	<= (others => '0'); 	-- this allows the signal to be used in load_mine/load_mine_2
+										-- data_in_surr isn't influenced by this
 				if (address_surr_buffer < 15) then	-- if it is 15, then there are no cells and thus no mines to the right
 					data_in_surr		<= data_in_surr_buffer + data_out_mine1 + data_out_mine2 + data_out_mine3;
 					address_mine		<= address_surr_buffer;
