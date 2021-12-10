@@ -1,0 +1,119 @@
+C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Roms.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none {C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Roms.vhd}
+QuestaSim-64 vcom 10.6g Compiler 2019.08 Aug  3 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity rom_covered
+-- Compiling architecture bitmap of rom_covered
+-- Compiling entity rom_one
+-- Compiling architecture bitmap of rom_one
+-- Compiling entity rom_two
+-- Compiling architecture bitmap of rom_two
+-- Compiling entity rom_three
+-- Compiling architecture bitmap of rom_three
+-- Compiling entity rom_four
+-- Compiling architecture bitmap of rom_four
+-- Compiling entity rom_five
+-- Compiling architecture bitmap of rom_five
+-- Compiling entity rom_six
+-- Compiling architecture bitmap of rom_six
+-- Compiling entity rom_seven
+-- Compiling architecture bitmap of rom_seven
+-- Compiling entity rom_eight
+-- Compiling architecture bitmap of rom_eight
+-- Compiling entity rom_empty
+-- Compiling architecture bitmap of rom_empty
+-- Compiling entity rom_bomb
+-- Compiling architecture bitmap of rom_bomb
+-- Compiling entity rom_flag
+-- Compiling architecture bitmap of rom_flag
+
+} {} {}} C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd
+QuestaSim-64 vcom 10.6g Compiler 2019.08 Aug  3 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity maps
+-- Compiling architecture behaviour of rom
+-- Loading entity rom
+** Error: C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd(34): Illegal target for signal assignment.
+** Error: C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd(34): (vcom-1136) Unknown identifier "data".
+** Error: C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd(36): VHDL Compiler exiting
+
+} {10.0 13.0} {}} {C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Memory elements.vhd} {1 {vcom -work work -2002 -explicit -vopt -stats=none {C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Memory elements.vhd}
+QuestaSim-64 vcom 10.6g Compiler 2019.08 Aug  3 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity dmux
+-- Compiling architecture behv of dmux
+-- Compiling entity SR_latch
+-- Compiling architecture behav of SR_latch
+-- Compiling entity mux
+-- Compiling architecture behave of mux
+-- Compiling entity covered_mem
+-- Compiling architecture struct of covered_mem
+
+} {} {}} C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Final_Memory.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none {C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Final_Memory.vhd}
+QuestaSim-64 vcom 10.6g Compiler 2019.08 Aug  3 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity memory
+-- Compiling architecture behavioural of memory
+
+} {} {}} C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Memory_element_tb.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none {C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory_element_tb.vhd}
+QuestaSim-64 vcom 10.6g Compiler 2019.08 Aug  3 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity system_tb
+-- Compiling architecture structural of system_tb
+
+} {} {}} C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Test_maps.vhd {0 {vcom -work work -2002 -explicit -vopt -stats=none {C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd}
+QuestaSim-64 vcom 10.6g Compiler 2019.08 Aug  3 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity rom
+-- Compiling architecture behaviour of rom
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(45): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(71): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(84): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(87): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(107): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(110): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(129): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(132): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(147): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(150): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(170): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(173): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(195): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(198): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(210): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(213): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(237): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(242): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(275): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(279): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(402): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(403): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(404): Illegal sequential statement.
+** Error: C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd(414): VHDL Compiler exiting
+
+} {9.0 33.0} {}} C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/flagged_mem.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/flagged_mem.vhd
+QuestaSim-64 vcom 10.6g Compiler 2019.08 Aug  3 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity flagged_mem
+-- Compiling architecture behaviour of flagged_mem
+
+} {} {}}

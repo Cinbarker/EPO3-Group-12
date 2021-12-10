@@ -1,0 +1,1030 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/questasim64_10.6g/examples
+T_opt
+!s110 1637068363
+VNQUn?n2oHJ1Tel5M6mlXI3
+04 8 5 work sr_latch behav 1
+=1-380025a3a5b6-6193ae4b-24d-d3c
+Z1 o-quiet -auto_acc_if_foreign -work work
+Z2 tCvgOpt 0
+n@_opt
+Z3 OL;O;10.6g;65
+R0
+T_opt1
+!s110 1637315342
+Vm=Ld6QnZ90WhjFLhXmS9F3
+04 9 10 work system_tb structural 1
+=1-380025a3a5b6-6197730d-363-848
+R1
+R2
+n@_opt1
+R3
+R0
+Ecovered_mem
+Z4 w1638264541
+Z5 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z6 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z7 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z8 dC:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory
+Z9 8C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Memory elements.vhd
+Z10 FC:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Memory elements.vhd
+l0
+L61
+V4=:aaofhXCzA4lizC]9VE2
+!s100 D^CZFhUXDbRJ>nNzGAH[Q0
+Z11 OL;C;10.6g;65
+32
+Z12 !s110 1639133230
+!i10b 1
+Z13 !s108 1639133230.000000
+Z14 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Memory elements.vhd|
+Z15 !s107 C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/Memory elements.vhd|
+!i113 0
+Z16 o-work work -2002 -explicit
+Z17 tExplicit 1 CvgOpt 0
+Astruct
+R5
+R6
+R7
+DEx4 work 11 covered_mem 0 22 4=:aaofhXCzA4lizC]9VE2
+l91
+L69
+Vlb?4@QRm[U<O>W[YGM]?k2
+!s100 _aB?RFQaAWCT2EbogJi@Q3
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 0
+R16
+R17
+Edmux
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+l0
+L5
+Va0dSkSI=LkH[<j>nlUQ_Z3
+!s100 0CQkEnN4^nWT:X5hO2<dJ1
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 0
+R16
+R17
+Abehv
+R5
+R6
+R7
+DEx4 work 4 dmux 0 22 a0dSkSI=LkH[<j>nlUQ_Z3
+l13
+L12
+V>4Gegf^EPRl6J3HR`OM6V2
+!s100 ikUZZP?<f6IHC_aVP?cXl1
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 0
+R16
+R17
+Eflagged_mem
+Z18 w1638264565
+R5
+R6
+R7
+R8
+Z19 8C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/flagged_mem.vhd
+Z20 FC:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/flagged_mem.vhd
+l0
+L5
+VfI[;M]`^;T`QSL>OZFUJd3
+!s100 78JoZ7?_zM0bNIE`6_jDV3
+R11
+32
+R12
+!i10b 1
+R13
+Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/flagged_mem.vhd|
+Z22 !s107 C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/flagged_mem.vhd|
+!i113 0
+R16
+R17
+Abehaviour
+R5
+R6
+R7
+DEx4 work 11 flagged_mem 0 22 fI[;M]`^;T`QSL>OZFUJd3
+l16
+L12
+V?8bnz`Eid5]CXdmeRLzfe2
+!s100 azQV=JAZ`2[fXG>J6`6dR1
+R11
+32
+R12
+!i10b 1
+R13
+R21
+R22
+!i113 0
+R16
+R17
+Emaps
+w1638270439
+R5
+R6
+R7
+R8
+8C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd
+FC:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd
+l0
+L4
+VCN23z=B:fSJUVBgXcN6ab3
+!s100 90@fZGXF[Ck[K8;M[G39Y0
+R11
+32
+R12
+!i10b 1
+R13
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd|
+!s107 C:/Users/dries/OneDrive/Bureaublad/EPO-3/Memory/bitmap.vhd|
+!i113 0
+R16
+R17
+Ememory
+Z23 w1639039968
+R5
+R6
+R7
+R8
+Z24 8C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Final_Memory.vhd
+Z25 FC:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Final_Memory.vhd
+l0
+L5
+VNGf?6k0AXzCeG63ZQUMIG3
+!s100 ZhSjm<]@PL@EQ;=0C6<J22
+R11
+32
+R12
+!i10b 1
+R13
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Final_Memory.vhd|
+Z27 !s107 C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Final_Memory.vhd|
+!i113 0
+R16
+R17
+Abehavioural
+R5
+R6
+R7
+DEx4 work 6 memory 0 22 NGf?6k0AXzCeG63ZQUMIG3
+l34
+L15
+Vn<nSHJme;h^9TTECXOeT=1
+!s100 S90UTJ8og_;cdGQC8:QU]2
+R11
+32
+R12
+!i10b 1
+R13
+R26
+R27
+!i113 0
+R16
+R17
+Emux
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+l0
+L45
+VYQ9FmeLkigBV0LTk]Mo4G3
+!s100 5jn_cR_H30`aEC=<kBm;@2
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 0
+R16
+R17
+Abehave
+R5
+R6
+R7
+DEx4 work 3 mux 0 22 YQ9FmeLkigBV0LTk]Mo4G3
+l52
+L51
+Vmi>o7c1lA?FXXOi8e`>UX1
+!s100 LeCZgCdO5:;>cCb[e__iP2
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 0
+R16
+R17
+Eram
+Z28 w1638262278
+R5
+R6
+R7
+R8
+Z29 8C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\flagged_mem.vhd
+Z30 FC:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\flagged_mem.vhd
+l0
+L5
+Vzl=;?Ie?8hGK3=DeSf@dn0
+!s100 KW=PhVcg9UM6dR0CE2NXI3
+R11
+32
+Z31 !s110 1638264543
+!i10b 1
+Z32 !s108 1638264543.000000
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\flagged_mem.vhd|
+Z34 !s107 C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\flagged_mem.vhd|
+!i113 0
+R16
+R17
+Abehaviour
+R5
+R6
+R7
+DEx4 work 3 ram 0 22 zl=;?Ie?8hGK3=DeSf@dn0
+l16
+L12
+Vf7c3VB0ITG_@jKdhGgMWA1
+!s100 FmzkfbAzcG3Q5Ol>KZY>00
+R11
+32
+R31
+!i10b 1
+R32
+R33
+R34
+!i113 0
+R16
+R17
+Erom
+Z35 w1639130623
+R5
+R6
+R7
+R8
+Z36 8C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd
+Z37 FC:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd
+l0
+L5
+VEFJ9GY6gORlWSk^DMagWW0
+!s100 dM;oW8k?@]RE?iUU?DESF1
+R11
+32
+R12
+!i10b 1
+R13
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd|
+Z39 !s107 C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Test_maps.vhd|
+!i113 0
+R16
+R17
+Abehaviour
+R5
+R6
+R7
+DEx4 work 3 rom 0 22 EFJ9GY6gORlWSk^DMagWW0
+l32
+L28
+VgP0iK457[3<Y@ZLFB;5FJ3
+!s100 JFS^1;2PjAi_N4h1h`hP63
+R11
+32
+!s110 1639040725
+!i10b 1
+!s108 1639040725.000000
+R38
+R39
+!i113 0
+R16
+R17
+Erom_bomb
+Z40 w1639132957
+R5
+R6
+R7
+R8
+Z41 8C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Roms.vhd
+Z42 FC:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Roms.vhd
+l0
+L331
+V0ZL;Q]dj;8UR[Un`dh4R61
+!s100 XUQm1<bVM[3ETJ22eh8HI2
+R11
+32
+R12
+!i10b 1
+R13
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Roms.vhd|
+Z44 !s107 C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Roms.vhd|
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 8 rom_bomb 0 22 0ZL;Q]dj;8UR[Un`dh4R61
+32
+R12
+l338
+L336
+V2Ykn=>fF5:XDk1o7C8CzI3
+!s100 ?>bEdnFEEM7I__=:;8bPi2
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_con
+Z45 w1639133228
+R5
+R6
+R7
+R8
+Z46 8C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\bitmap_module.vhd
+Z47 FC:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\bitmap_module.vhd
+l0
+L5
+VWbC^j<WGjEAao1_dm1Pj?1
+!s100 o4`@I65e@@P<]6Egzz;^F2
+R11
+32
+R12
+!i10b 1
+R13
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\bitmap_module.vhd|
+Z49 !s107 C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\bitmap_module.vhd|
+!i113 0
+R16
+R17
+Abehaviour
+R5
+R6
+R7
+DEx4 work 7 rom_con 0 22 WbC^j<WGjEAao1_dm1Pj?1
+32
+R12
+l89
+L14
+VST[G1k_EL>i`ClVk0kZhI3
+!s100 SY?o3LndHJ738Uloozjhb1
+R11
+!i10b 1
+R13
+R48
+R49
+!i113 0
+R16
+R17
+Erom_con_tb
+R45
+R6
+R7
+R8
+R46
+R47
+l0
+L122
+VdcmW1S3dVkT@;Ub=5@]7X1
+!s100 e6<9:5o^k^7e1460^Q08k1
+R11
+32
+R12
+!i10b 1
+R13
+R48
+R49
+!i113 0
+R16
+R17
+Abehaviour
+R6
+R7
+DEx4 work 10 rom_con_tb 0 22 dcmW1S3dVkT@;Ub=5@]7X1
+32
+R12
+l141
+L125
+V_PT>zQPjJW6iCO4c]U:2_0
+!s100 GD;9UCDWl;H5?1Dn7PIGj2
+R11
+!i10b 1
+R13
+R48
+R49
+!i113 0
+R16
+R17
+Erom_covered
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L5
+V=nmBiX_:B`]5gI3=LZ6@W0
+!s100 DL0RI0h8a__2lA3Cf>i4F3
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 11 rom_covered 0 22 =nmBiX_:B`]5gI3=LZ6@W0
+32
+R12
+l12
+L10
+Vh`gC9el5T8=5GKbS9JIcU3
+!s100 5I?BC4XL?n6TgOOeJlX=33
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_eight
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L276
+VClXHn3>>DRBUFcXiQmm]^0
+!s100 lV>2m;_i4z4R3@iHcJWFA1
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 9 rom_eight 0 22 ClXHn3>>DRBUFcXiQmm]^0
+32
+R12
+l283
+L281
+V8GbPD4j5Ng6a7g_cP4izK2
+!s100 CB<iV;UNz0AP58koRZzl30
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_empty
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L316
+VfFZmf57Dk[H[eP`bLQH?[2
+!s100 ?WT271RU=oOTlWgCXHXcC3
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 9 rom_empty 0 22 fFZmf57Dk[H[eP`bLQH?[2
+32
+R12
+l323
+L321
+VEAcGR<bXz5_`:4ca8;0Ma1
+!s100 `2E[UojhLTN9?]a`UDe:g2
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_five
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L174
+VMm1ECPk1Z^FSfJL<>DEH12
+!s100 W];i[VI[n:?hc1hK@1AbW3
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 8 rom_five 0 22 Mm1ECPk1Z^FSfJL<>DEH12
+32
+R12
+l181
+L179
+V[A]zJ=@jMhhjEeHhUBZS?2
+!s100 <5]2[JgEKGz0j@N[WoHnA0
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_flag
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L380
+VnRBCcGnF<a1VI5d0I=BeM2
+!s100 zKREAWD;WB66FZA7Qnh;W3
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 8 rom_flag 0 22 nRBCcGnF<a1VI5d0I=BeM2
+32
+R12
+l387
+L385
+V>n=VaZLA7m47MfF^P7UCU1
+!s100 h=YkLLXQmdLRiJ_:f<Ld@0
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_four
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L143
+V@6YLI1jPE1hVD@SdGzbL=1
+!s100 _X>Zb`lgA4`kbL8Akho>R0
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 8 rom_four 0 22 @6YLI1jPE1hVD@SdGzbL=1
+32
+R12
+l150
+L148
+V2J1DT`oBcgMK@omgfEC?40
+!s100 XH4_8^[WGJ1bMcKA:=TCg1
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_one
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L43
+VT_=F8jD5U320;VUBO:n9O0
+!s100 83FW3<oPTT;<6FMzaeNU^3
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 7 rom_one 0 22 T_=F8jD5U320;VUBO:n9O0
+32
+R12
+l50
+L48
+V85KJDWR6diR6IOQB?on3b1
+!s100 _PcDg92KnBefWZP1B7R=`2
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_seven
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L248
+VRM=FS<gngo<AS`>F^L3N>3
+!s100 PX]i97gEUYKB@YHViZ>ZW0
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 9 rom_seven 0 22 RM=FS<gngo<AS`>F^L3N>3
+32
+R12
+l255
+L253
+VD7LzEG9>Di1]1S[=jSYk;2
+!s100 C>:Nf9_QoJlC<I9hEcFm83
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_six
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L210
+VAAjmdzNeH=R1ZPHjk8dZK0
+!s100 VfAJ]9dHjHGL`FSV2jYIP0
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 7 rom_six 0 22 AAjmdzNeH=R1ZPHjk8dZK0
+32
+R12
+l217
+L215
+V3AK4:i0Tm`2ZzhlzZiJSF1
+!s100 _52Gioj]klz@JTH0koZV33
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_three
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L108
+VR59JBcaeEnSfWKl<Xe<Cz0
+!s100 A24[Ll@RT`_HOR;ARYhX:2
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 9 rom_three 0 22 R59JBcaeEnSfWKl<Xe<Cz0
+32
+R12
+l115
+L113
+Vh130LVYV`jaGzl_20X?OA0
+!s100 K<oE>NPDk>Xm^FNE7RJ4K2
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Erom_two
+R40
+R5
+R6
+R7
+R8
+R41
+R42
+l0
+L72
+VjB@nb]MbELXfFO[GTkLbN1
+!s100 QYje3G:NNcN`[6AdEHjmQ2
+R11
+32
+R12
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Abitmap
+R5
+R6
+R7
+DEx4 work 7 rom_two 0 22 jB@nb]MbELXfFO[GTkLbN1
+32
+R12
+l79
+L77
+VLH0W3dF8o=iBX0Dc9T6gI0
+!s100 N8eV4YYYPU:6mWkQLI8>12
+R11
+!i10b 1
+R13
+R43
+R44
+!i113 0
+R16
+R17
+Esr_latch
+R4
+R6
+R7
+R8
+R9
+R10
+l0
+L24
+Vz3KHbnThFBza5h_V3R;BL0
+!s100 A;4Pe;WKNS?L6f[jjJFZl0
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 0
+R16
+R17
+Abehav
+R6
+R7
+DEx4 work 8 sr_latch 0 22 z3KHbnThFBza5h_V3R;BL0
+l36
+L31
+VdLJQFdOA_haP_8^>dQ3ea0
+!s100 6:?M80`812jf:5238z^SY2
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 0
+R16
+R17
+Esystem
+Z50 w1638264486
+R5
+R6
+R7
+R8
+Z51 8C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory elements.vhd
+Z52 FC:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory elements.vhd
+l0
+L61
+V@k1CSiz@fLBIgB[8hNR?]0
+!s100 2:Bf8:@XFl>IAJbC6`:dZ0
+R11
+32
+Z53 !s110 1638264487
+!i10b 1
+Z54 !s108 1638264487.000000
+Z55 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory elements.vhd|
+Z56 !s107 C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory elements.vhd|
+!i113 0
+R16
+R17
+Astruct
+R5
+R6
+R7
+DEx4 work 6 system 0 22 @k1CSiz@fLBIgB[8hNR?]0
+32
+R53
+l91
+L69
+ViHTkMUeEZ?@oN`[XZkNJ51
+!s100 X:O0_L7i;iILZWPBdk:[E2
+R11
+!i10b 1
+R54
+R55
+R56
+!i113 0
+R16
+R17
+Esystem_tb
+Z57 w1637315302
+R6
+R7
+R8
+Z58 8C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory_element_tb.vhd
+Z59 FC:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory_element_tb.vhd
+l0
+L4
+VAo74SQVG=S6YhGeFiSMgc1
+!s100 [I[z^3LbEg;dE5W]OO]go1
+R11
+32
+R12
+!i10b 1
+R13
+Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory_element_tb.vhd|
+Z61 !s107 C:\Users\dries\OneDrive\Bureaublad\EPO-3\Memory\Memory_element_tb.vhd|
+!i113 0
+R16
+R17
+Astructural
+R6
+R7
+DEx4 work 9 system_tb 0 22 Ao74SQVG=S6YhGeFiSMgc1
+l19
+L7
+Vz8Qf=^C5igHcXN5khMhm<2
+!s100 N6D?<bd14m72a4Yhi=O0E1
+R11
+32
+R12
+!i10b 1
+R13
+R60
+R61
+!i113 0
+R16
+R17

@@ -1,0 +1,516 @@
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_covered is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_covered;
+
+architecture bitmap of rom_covered is
+signal data	 : std_logic;
+begin
+		with address select data <=
+				'0' when "00010001",
+				'0' when "00100001",
+				'0' when "00110001",
+				'0' when "01000001",
+				'0' when "01010001",
+				'0' when "01100001",
+				'0' when "01110001",
+				'0' when "10000001",
+				'0' when "10010001",
+				'0' when "10100001",
+				'0' when "10110001",
+				'0' when "00010010",
+				'0' when "00010011",
+				'0' when "00010100",
+				'0' when "00010101",
+				'0' when "00010110",
+				'0' when "00010111",
+				'0' when "00011000",
+				'0' when "00011001",
+				'0' when "00011010",
+				'0' when "00011011",
+				'1' when others;
+				data_out <= "111111" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_one is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_one;
+
+architecture bitmap of rom_one is
+signal data	 : std_logic;
+begin
+with address select data <=
+				'0' when "01010011",
+				'0' when "01100011",
+				'0' when "01100100",
+				'0' when "01100101",
+				'0' when "01100110",
+				'0' when "01100111",
+				'0' when "01101000",
+				'0' when "01001001",
+				'0' when "01011001",
+				'0' when "01101001",
+				'0' when "01111001",
+				'0' when "10001001",
+				'1' when others;
+				data_out <= "000010" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_two is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_two;
+
+architecture bitmap of rom_two is
+signal data	 : std_logic;
+begin
+				with address select data <=
+				'0' when "01000011",
+				'0' when "01010011",
+				'0' when "01100011",
+				'0' when "01110011",
+				'0' when "10000011",
+				'0' when "10000100",
+				'0' when "10000101",
+				'0' when "01000110",
+				'0' when "01010110",
+				'0' when "01100110",
+				'0' when "01110110",
+				'0' when "10000110",
+				'0' when "01000111",
+				'0' when "01001000",
+				'0' when "01001001",
+				'0' when "01011001",
+				'0' when "01101001",
+				'0' when "01111001",
+				'0' when "10001001",
+				'1' when others;
+				data_out <= "001100" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_three is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_three;
+
+architecture bitmap of rom_three is
+signal data	 : std_logic;
+begin
+				with address select data <=
+				'0' when "01000011",
+				'0' when "01010011",
+				'0' when "01100011",
+				'0' when "01110011",
+				'0' when "10000011",
+				'0' when "10000100",
+				'0' when "10000101",
+				'0' when "01010110",
+				'0' when "01100110",
+				'0' when "01110110",
+				'0' when "10000110",
+				'0' when "10000111",
+				'0' when "10001000",
+				'0' when "01001001",
+				'0' when "01011001",
+				'0' when "01101001",
+				'0' when "01111001",
+				'0' when "10001001",
+				'1' when others;
+				data_out <= "110000" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_four is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_four;
+
+architecture bitmap of rom_four is
+signal data	 : std_logic;
+begin
+				with address select data <=
+				'0' when "01000011",
+				'0' when "10000011",
+				'0' when "01000100",
+				'0' when "10000100",
+				'0' when "01000101",
+				'0' when "10000101",
+				'0' when "01000110",
+				'0' when "01010110",
+				'0' when "01100110",
+				'0' when "01110110",
+				'0' when "10000110",
+				'0' when "10000111",
+				'0' when "10001000",
+				'0' when "10001001",
+				'1' when others;
+				data_out <= "000001" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_five is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_five;
+
+architecture bitmap of rom_five is
+signal data	 : std_logic;
+begin
+				with address select data <=
+				'0' when "01000011",
+				'0' when "01010011",
+				'0' when "01100011",
+				'0' when "01110011",
+				'0' when "10000011",
+				'0' when "01000100",
+				'0' when "01000101",
+				'0' when "01000110",
+				'0' when "01010110",
+				'0' when "01100110",
+				'0' when "01110110",
+				'0' when "10000110",
+				'0' when "10000111",
+				'0' when "10001000",
+				'0' when "01001001",
+				'0' when "01011001",
+				'0' when "01101001",
+				'0' when "01111001",
+				'0' when "10001001",
+				'1' when others;
+				data_out <= "010000" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_six is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_six;
+
+architecture bitmap of rom_six is
+signal data	 : std_logic;
+begin
+				with address select data <=
+				'0' when "01000011",
+				'0' when "01010011",
+				'0' when "01100011",
+				'0' when "01110011",
+				'0' when "10000011",
+				'0' when "01000100",
+				'0' when "01000101",
+				'0' when "01000110",
+				'0' when "01010110",
+				'0' when "01100110",
+				'0' when "01110110",
+				'0' when "10000110",
+				'0' when "01000111",
+				'0' when "10000111",
+				'0' when "01001000",
+				'0' when "10001000",
+				'0' when "01001001",
+				'0' when "01011001",
+				'0' when "01101001",
+				'0' when "01111001",
+				'0' when "10001001",
+				'1' when others;
+				data_out <= "001010" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_seven is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_seven;
+
+architecture bitmap of rom_seven is
+signal data	 : std_logic;
+begin
+				with address select data <=
+				'0' when "01000011",
+				'0' when "01010011",
+				'0' when "01100011",
+				'0' when "01110011",
+				'0' when "10000011",
+				'0' when "10000100",
+				'0' when "10000101",
+				'0' when "01110110",
+				'0' when "01110111",
+				'0' when "01101000",
+				'0' when "01101001",
+				'1' when others;
+				data_out <= "000010" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_eight is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_eight;
+
+architecture bitmap of rom_eight is
+signal data	 : std_logic;
+begin
+				with address select data <=
+				'0' when "01000011",
+				'0' when "01010011",
+				'0' when "01100011",
+				'0' when "01110011",
+				'0' when "10000011",
+				'0' when "01000100",
+				'0' when "10000100",
+				'0' when "01000101",
+				'0' when "10000101",
+				'0' when "01000110",
+				'0' when "01010110",
+				'0' when "01100110",
+				'0' when "01110110",
+				'0' when "10000110",
+				'0' when "01000111",
+				'0' when "10000111",
+				'0' when "01001000",
+				'0' when "10001000",
+				'0' when "01001001",
+				'0' when "01011001",
+				'0' when "01101001",
+				'0' when "01111001",
+				'0' when "10001001",
+				'1' when others;
+				data_out <= "010101" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_empty is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_empty;
+
+architecture bitmap of rom_empty is
+signal data	 : std_logic;
+begin
+				data_out <= "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_bomb is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_bomb;
+
+architecture bitmap of rom_bomb is
+signal data	 : std_logic;
+begin
+				with address select data <=
+				'0' when "01100010",
+				'0' when "00110011",
+				'0' when "01100011",
+				'0' when "10010011",
+				'0' when "01000100",
+				'0' when "01010100",
+				'0' when "01100100",
+				'0' when "01110100",
+				'0' when "10000100",
+				'0' when "01000101",
+				'0' when "01100101",
+				'0' when "01110101",
+				'0' when "10000101",
+				'0' when "01000110",
+				'0' when "01010110",
+				'0' when "01100110",
+				'0' when "01110110",
+				'0' when "10000110",
+				'0' when "01000111",
+				'0' when "01010111",
+				'0' when "01100111",
+				'0' when "01110111",
+				'0' when "10000111",
+				'0' when "01001000",
+				'0' when "01011000",
+				'0' when "01101000",
+				'0' when "01111000",
+				'0' when "10001000",
+				'0' when "00111001",
+				'0' when "01101001",
+				'0' when "10011001",
+				'0' when "01101010",
+				'1' when others;
+				data_out <= "000000" when data = '0' else "101010";
+end architecture;
+
+library IEEE;
+use IEEE.std_logic_1164.ALL;  
+use IEEE.numeric_std.ALL;
+
+entity rom_flag is
+      port(address : in std_logic_vector(7 downto 0);
+           data_out : out std_logic_vector(5 downto 0));
+   end rom_flag;
+
+architecture bitmap of rom_flag is
+signal data_flag	 : std_logic_vector (1 downto 0);
+begin
+				with address select data_flag <=
+				"01" when "00010001",
+				"01" when "00010010",
+				"01" when "00010011",
+				"01" when "00010100",
+				"01" when "00010101",
+				"01" when "00010110",
+				"01" when "00010111",
+				"01" when "00011000",
+				"01" when "00011001",
+				"01" when "00011010",
+				"01" when "00011011",
+				"01" when "00100001",
+				"10" when "00100010",
+				"10" when "00100011",
+				"10" when "00100100",
+				"10" when "00100101",
+				"10" when "00100110",
+				"10" when "00100111",
+				"10" when "00101000",
+				"10" when "00101001",
+				"10" when "00101010",
+				"10" when "00101011",
+				"01" when "00110001",
+				"10" when "00110010",
+				"10" when "00110011",
+				"10" when "00110100",
+				"10" when "00110101",
+				"10" when "00110110",
+				"10" when "00110111",
+				"10" when "00111000",
+				"10" when "00111001",
+				"10" when "00111010",
+				"10" when "00111011",
+				"01" when "01000001",
+				"10" when "01000010",
+				"10" when "01000011",
+				"10" when "01000100",
+				"10" when "01000101",
+				"10" when "01000110",
+				"10" when "01000111",
+				"10" when "01001000",
+				"10" when "01001001",
+				"10" when "01001010",
+				"10" when "01001011",
+				"01" when "01010001",
+				"10" when "01010010",
+				"10" when "01010011",
+				"10" when "01010100",
+				"10" when "01010101",
+				"10" when "01010110",
+				"10" when "01010111",
+				"10" when "01011000",
+				"10" when "01011001",
+				"10" when "01011010",
+				"10" when "01011011",
+				"01" when "01100001",
+				"10" when "01100010",
+				"10" when "01100011",
+				"10" when "01100100",
+				"10" when "01100101",
+				"10" when "01100110",
+				"10" when "01100111",
+				"10" when "01101000",
+				"10" when "01101001",
+				"10" when "01101010",
+				"10" when "01101011",
+				"01" when "01110001",
+				"10" when "01110010",
+				"10" when "01110011",
+				"10" when "01110100",
+				"10" when "01110101",
+				"10" when "01110110",
+				"10" when "01110111",
+				"10" when "01111000",
+				"10" when "01111001",
+				"10" when "01111010",
+				"10" when "01111011",
+				"01" when "10000001",
+				"10" when "10000010",
+				"10" when "10000011",
+				"10" when "10000100",
+				"10" when "10000101",
+				"10" when "10000110",
+				"00" when "10000111",
+				"10" when "10001000",
+				"10" when "10001001",
+				"10" when "10001010",
+				"10" when "10001011",
+				"01" when "10010001",
+				"10" when "10010010",
+				"10" when "10010011",
+				"10" when "10010100",
+				"10" when "10010101",
+				"00" when "10010110",
+				"00" when "10010111",
+				"00" when "10011000",
+				"10" when "10011001",
+				"10" when "10011010",
+				"10" when "10011011",
+				"01" when "10100001",
+				"10" when "10100010",
+				"10" when "10100011",
+				"10" when "10100100",
+				"00" when "10100101",
+				"00" when "10100110",
+				"00" when "10100111",
+				"00" when "10101000",
+				"00" when "10101001",
+				"10" when "10101010",
+				"10" when "10101011",
+				"01" when "10110001",
+				"10" when "10110010",
+				"10" when "10110011",
+				"10" when "10110100",
+				"10" when "10110101",
+				"10" when "10110110",
+				"10" when "10110111",
+				"10" when "10111000",
+				"10" when "10111001",
+				"10" when "10111010",
+				"10" when "10111011",
+				"11" when others;
+
+				data_out <= "111111" when data_flag = "01" else 
+					    "000000" when data_flag = "00" else
+					    "110000" when data_flag = "10" else
+					    "101010";
+end architecture;
