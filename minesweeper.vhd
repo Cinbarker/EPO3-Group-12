@@ -1,43 +1,7 @@
 -- TODO: see if data can be spared by fusing the 3 1 bit RAM components
--- TODO: see if the double input to mem in RAM gives problems
 -- TODO: see if data can be spared by optimising the mine generation part
 -- TODO: create a way for other modules to ask if there are mines in certain cells
 
-
-
-library IEEE;
-use IEEE.std_logic_1164.ALL;
-use IEEE.std_logic_unsigned.all;
-use IEEE.numeric_std.ALL;
-entity ram_tb is
-end ram_tb;
-architecture behaviour of ram_tb is
-	component ram_1 is
-		port(	address: 	in std_logic_vector(3 downto 0);	-- 2^address'length amount of cells, used to specify the cell to read/write the data
-			data_in: 	in std_logic;				-- size of a single cell, data input
-			data_out: 	out std_logic;				-- data output
-			write: 		in std_logic;				-- if 1: current input will be written to addressed cell
-			reset:		in std_logic);
-	end component ram_1;
-signal data_in, data_out, write, reset: std_logic;
-signal address: std_logic_vector(3 downto 0);
-begin
-	reset	<= 	'1' after 0 ns,
-			'0' after 100 ns;
-	data_in	<=	'0' after 150 ns,
-			'1' after 200 ns;
-	write	<=	'1' after 230 ns;
-
-	address	<=	"0000" after 0 ns,
-			"0001" after 550 ns,
-			"0010" after 600 ns,
-			"0011" after 650 ns,
-			"0100" after 700 ns,
-			"0101" after 750 ns,
-			"0110" after 800 ns,
-			"0111" after 850 ns,
-			"0000" after 900 ns;
-end behaviour;
 
 
 
@@ -106,8 +70,9 @@ begin
 				if (ready='1') then
 					if (mine='1' AND count_ready_buffer = '0') then
 						mine_count_buffer	<= mine_count_buffer + 1;
-	-- figure out why changing new_count to mine_count_buffer causes mine_count_buffer to increase by 2
 						new_state	<= update_count;
+					else
+						new_state	<= update_count;	-- this way it also stops counting if the last cell is not a mine
 					end if;
 				end if;
 		end case;
@@ -240,9 +205,9 @@ use IEEE.std_logic_1164.ALL;
 use IEEE.std_logic_unsigned.all;
 use ieee.numeric_std.all;
 entity seedgen is
-   port(start : in  std_logic;
-	reset : in	 std_logic;
-        clk   : in  std_logic;
+   port(start : in std_logic;
+	reset : in std_logic;
+        clk   : in std_logic;
         seed  : out std_logic_vector(9 downto 0));
 end seedgen;
 
@@ -313,11 +278,10 @@ port(	address: 	in std_logic_vector(3 downto 0);	-- 2^address'length amount of c
 end entity ram_4;
 
 architecture behaviour of ram_4 is
-type mem_type is array(0 to (2**address'length)-1)
-		of std_logic_vector(data_in'range);
+type mem_type is array(0 to (2**address'length)-1) of std_logic_vector(data_in'range);
 signal mem : mem_type;
 begin
-	ram_lat : process(address, write, data_in) is
+	ram_lat : process(address, write, reset, data_in) is
 	begin
 		if (reset = '1') then
 			mem(0 to 15) <= (others => (others => '0'));
@@ -343,18 +307,19 @@ port(	address: 	in std_logic_vector(3 downto 0);	-- 2^address'length amount of c
 end entity ram_1;
 
 architecture behaviour of ram_1 is
-type mem_type is array(15 downto 0) of std_logic;
+type mem_type is array(0 to address'length**2-1) of std_logic;
 signal mem : mem_type;
 begin
-	ram_lat : process(address, write, data_in) is
+	ram_lat : process(address, write, reset, data_in) is
 	begin
+	
 		if (reset = '1') then
-			mem(15 downto 0) <= (others => '0');
-		elsif (write='1') then			-- rising_edge instead of write = '1' prevents all 3 registers from becoming the input of register 1
+			mem <= ((others => '0'));
+		elsif (rising_edge(write)) then			-- rising_edge instead of write = '1' prevents all 3 registers from becoming the input of register 1
 			mem(to_integer(unsigned(address))) <= data_in;
 		end if;
 	end process;
-	data_out <= mem(to_integer(unsigned(address)));
+	data_out <= std_logic(mem(to_integer(unsigned(address))));
 end architecture behaviour;
 
 ---------------------------------------------------------------------------------------------------------------------------
@@ -399,7 +364,7 @@ begin
 			mineval_out	<= mine_value;
 		end if;
 	end process;
-	process (address_ctrl, address_pixel, ctrl_done, pixel_done)
+	process (address_ctrl, address_pixel, ctrl_done, pixel_done, state)
 	begin
 		case state is
 			when s_controller =>
@@ -448,7 +413,8 @@ architecture behaviour of controller is
 					load_mines_2,
 					read_left,
 					read_middle,
-					read_right);
+					read_right,
+					buffer_state);
 	signal state, new_state:	control_state;
 begin
 	process (clk)
@@ -471,7 +437,7 @@ begin
 				row				<= (others => '0');	-- the current row it is working on
 				address_mine			<= (others => '0');	-- output signal, determined based on state and address_surr_buffer
 				address_surr			<= (others => '0');	-- output signal, address of cell who's surroundings are calculated
-				address_surr_buffer		<= (others => '0');	-- if <15, not at end of row (came from line 237), used in load_mines_2 to specify this
+				address_surr_buffer		<= (others => '1');	-- if <15, not at end of row (came from line 237), used in load_mines_2 to specify this
 											-- used because output signal can't be read in vhdl
 				data_in_surr			<= (others => '0');	-- output signal, the amount of surrounding mines (is calculated in its buffer)
 				data_in_surr_buffer		<= (others => '0');	-- this is also used in load_mines/load_mines_2 to specify what cell in the row
@@ -479,21 +445,21 @@ begin
 				bit_3				<= (others => '0');	-- always 000, used in line 220 so vhdl understands desired output
 				start_done			<= '0';			-- if this is 0, 2 rows instead of 1 will be loaded the first time				allmines_done			<= '0';		-- if all mines in the field have been read, all new mines (below the field) are 0
 				allmines_done_buffer		<= '0';			-- can't read output signals, a buffer is needed	
+				allmines_done			<= '0';
 				new_state			<= load_mines;
+				write				<= '0';			-- so rising_edge(write) works properly at ram_1 for the first cell after reset
 
 			when load_mines =>	-- this state asks for the mines and then starts writing them
-				write_surr	<= '0';
 				write_surrcalc	<= '0';
-				if (allmines_done_buffer = '0') then
-					mine_addr_ask(3 downto 0)	<= data_in_surr_buffer;	-- this signal is used here since every row it starts at 0, so it doesn't store
+				address_mine	<= data_in_surr_buffer;
+				mine_addr_ask(3 downto 0)	<= data_in_surr_buffer;	-- this signal is used here since every row it starts at 0, so it doesn't store
 												-- anything right now, allowing it to be used
-					if (start_done = '0') then
-						mine_addr_ask(7 downto 4)	<= row;		-- assuming upper left corner is 0, from left to right, up to down
-					else
-						mine_addr_ask(7 downto 4)	<= row + 1;
-					end if;
+				if (start_done = '0') then
+					mine_addr_ask(7 downto 4)	<= row;		-- assuming upper left corner is 0, from left to right, up to down
+				else
+					mine_addr_ask(7 downto 4)	<= row + 1;
 				end if;
-				if (mine_done = '1' OR allmines_done_buffer = '1') then
+				if (mine_done = '1') then
 					write	<= '1';
 					new_state	<= load_mines_2;
 					if (row = 14 AND data_in_surr_buffer = 15) then
@@ -505,12 +471,12 @@ begin
 				write	<= '0';
 				if (mine_done = '0') then
 					if (data_in_surr_buffer < 15) then
-						address_mine	<= data_in_surr_buffer + 1;
+						data_in_surr_buffer	<= data_in_surr_buffer + 1;
 						new_state	<= load_mines;
 					else
-						address_mine		<= (others => '0');
 						if (start_done = '0') then	-- used when starting the program once only, loads 2 rows of mines for the first row
 							start_done	<= '1';
+							data_in_surr_buffer	<= (others => '0');
 							new_state <= load_mines;
 						elsif (write_surrread = '1') then	-- will start calculating the next row after pixel writer is done with this row
 							new_state <= read_left;
@@ -519,7 +485,7 @@ begin
 						end if;
 					end if;
 				end if;
-				if (address_surr_buffer < 15) then -- this happens if it doesn't go to the next row
+				if (address_surr_buffer < 15) then -- this happens if it doesn't go to the next row, it is initialised to 15 in reset to prevent triggering this
 					write_surr	<= '0';
 					write_surrcalc	<= '0';
 					address_surr			<= address_surr_buffer + '1';
@@ -529,6 +495,8 @@ begin
 			when read_left =>
 				if (address_surr_buffer > 0) then	-- if it is 0, then there are no cells and thus no mines to the left
 					data_in_surr_buffer	<= bit_3 + data_out_mine1 + data_out_mine2 + data_out_mine3;	-- bit_3 is 000, used to prevent error
+				else
+					data_in_surr_buffer	<= (others => '0');
 				end if;
 				address_mine		<= address_surr_buffer;
 				new_state	<= read_middle;
@@ -546,16 +514,21 @@ begin
 					data_in_surr		<= data_in_surr_buffer + data_out_mine1 + data_out_mine2 + data_out_mine3;
 					address_mine		<= address_surr_buffer;
 					new_state		<= load_mines_2;
-				elsif (row = 15) then				-- if address_surr_buffer and row are 15, everything has been calculated, it will reset fo the next iteration
-					new_state	<= reset_state;
-					write_surrcalc	<= '1';
-					data_in_surr	<= data_in_surr_buffer;
 				else
 					data_in_surr	<= data_in_surr_buffer;
-					write_surrcalc	<= '1';		-- the signal that the row is calculated, control of surrounding address goes to pixel writer
+					new_state	<= buffer_state;
+				end if;
+			when buffer_state =>				-- if address_surr_buffer and row are 15, everything has been calculated, it will reset for the next iteration
+				write_surr	<= '0';
+				write_surrcalc	<= '1';			-- the signal that the row is calculated, control of surrounding address goes to pixel writer
+				if (row = 15) then
+					new_state	<= reset_state;	-- all rows have been read, it will start all over again
+				else
 					new_state	<= load_mines;
 					row	<= row + 1;		-- this is the end of the row, it will now go to the next row	
 				end if;
+				
+				
 		end case;
 	end process;
 end architecture behaviour;
@@ -577,12 +550,7 @@ entity building_main is	-- no way for other modules to ask for a mine at locatio
 		surr_read:				in std_logic;				-- when the pixel writer has written this row
 		adr_surr_pixel:				in std_logic_vector(3 downto 0);	-- what is being read by the pixel writer
 		surr_calc:				out std_logic;				-- when surrounding has been updated to the next row
-		surr_out:				out std_logic_vector(3 downto 0)	-- the output that is read by pixel writer
--- these signals were removed from main because of combining modules
---		mine_addr_ask:				out std_logic_vector(7 downto 0);	-- the cell who's mine value 1/0 is currently being asked
---		mine_done:				in std_logic;				-- pulses 1 when next mine is being outputted (after requesting next mine)
---		mine_value:				in std_logic				-- the value of the current mine
-		);
+		surr_out:				out std_logic_vector(3 downto 0));	-- the output that is read by pixel writer
 end entity building_main;
 
 architecture structural of building_main is
@@ -663,13 +631,13 @@ architecture structural of building_main is
         		count_ready: out std_logic);
 	end component;
 
-	signal write, write_surr, mine_1_out, mine_2_out, mine_3_out, surr_calc_buffer, allmines_done, ram_1_data_in, ready_sig, last_cell_sig, mine_sig: std_logic;
+	signal write, write_surr, mine_1_out, mine_2_out, mine_3_out, surr_calc_sig, allmines_done, ram_1_data_in, ready_sig, last_cell_sig, mine_sig: std_logic;
 	signal pos: std_logic_vector(7 downto 0);
-	signal mine_address, surr_address, surr_in, address_surr_controller: std_logic_vector(3 downto 0);
+	signal mine_address, surr_address, surr_in, adr_surr_ctrl: std_logic_vector(3 downto 0);
 	signal seed_sig: std_logic_vector(9 downto 0);
 	
 begin
-	surr_calc	<= surr_calc_buffer;
+	surr_calc	<= surr_calc_sig;
 	ready		<= ready_sig;
 	mine		<= mine_sig;
 
@@ -696,9 +664,9 @@ begin
 					mine_count	=> mine_count,
 					count_ready	=> count_ready);
 
-	mux_1:	mux_2to1 port map	(address_ctrl	=> address_surr_controller,
+	mux_1:	mux_2to1 port map	(address_ctrl	=> adr_surr_ctrl,
 					address_pixel	=> adr_surr_pixel,
-					ctrl_done	=> surr_calc_buffer,
+					ctrl_done	=> surr_calc_sig,
 					pixel_done	=> surr_read,
 					output		=> surr_address,
 					allmines_done	=> allmines_done,
@@ -738,9 +706,9 @@ begin
 					address_mine	=> mine_address,
 					write		=> write,
 					data_in_surr	=> surr_in,
-					address_surr	=> address_surr_controller,
+					address_surr	=> adr_surr_ctrl,
 					write_surr	=> write_surr,
-					write_surrcalc	=> surr_calc_buffer,		
+					write_surrcalc	=> surr_calc_sig,		
 					write_surrread	=> surr_read,
 					mine_done	=> ready_sig,
 					mine_addr_ask	=> pos,
@@ -794,7 +762,7 @@ begin
 
 	start 				<= 	'0' after 0 ns,
 						'1' after 990 ns,
-						'0' after 1040 ns;
+						'0' after 1020 ns;
 
 	adr_surr_pixel			<= 	"0000" after 0 ns;
 
