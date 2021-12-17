@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.ALL;
 
-entity clearing_alg is
+entity clearing_2 is
 	port (	clk 	: in std_logic;
 		reset 	: in std_logic;
 
@@ -25,4 +25,3 @@ entity clearing_alg is
 		game_over	: out std_logic					--to display
 	);
 end entity;
-
