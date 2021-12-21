@@ -6,6 +6,7 @@ architecture behaviour of clearing3 is
 	type clr_state is (game_start,req_cov,read_cov,req_fl,read_fl,waiting,update_cursor,uncover,flag,unflag,check_mine,ac1,ac2,ac3,ac4,ac5,ac6,ac7,ac8,ac9,ac10,ac11,ac12,ac13,ac14,ac15,ac16,game_end);
 	signal state,new_state:clr_state;
 	signal cursor_buff:std_logic_vector(7 downto 0);
+	signal already_uncov:std_logic;
 	signal border:std_logic;
 	signal borderdir:std_logic_vector(2 downto 0);
 begin
@@ -26,6 +27,7 @@ begin
 	begin
 		case state is
 			when game_start=>
+				already_uncov<='0';
 				border<='0';
 				borderdir<="000";
 				cover_out<='1';
@@ -73,9 +75,10 @@ begin
 				write<='0';
 				pass<='1';
 				cover_out<=cover_in;
+				cursor_out<=cursor_buff;
 				if cursor_buff/=cursor_in then	--pos change => read mem
 					new_state<=update_cursor;
-				elsif controller_in="100" and flag_in='0' and cover_in='1' then		--uncover only when no flag and covered
+				elsif controller_in="100" and flag_in='0' and already_uncov='0' then		--uncover only when no flag and covered
 					new_state<=uncover;
 				elsif controller_in="101" then				--flag when no flag, unflag when flag
 					if flag_in='0' then
@@ -87,6 +90,7 @@ begin
 					new_state<=waiting;
 				end if;
 			when update_cursor=>
+				already_uncov<='0';
 				cursor_buff<=cursor_in;
 				new_state<=req_cov;
 			when flag=>
@@ -131,6 +135,7 @@ begin
 				else					--no adjacent border
 					border<='0';
 				end if;
+				already_uncov<='1';
 				write<='1';
 				cofl<='0';
 				cover_out<='0';
