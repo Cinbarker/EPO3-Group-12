@@ -4,9 +4,13 @@ use ieee.numeric_std.all;
 
 architecture behaviour of clearing3 is
 	type clr_state is (game_start,req_cov,read_cov,req_fl,read_fl,waiting,update_cursor,uncover,flag,unflag,check_mine,ac1,ac2,ac3,ac4,ac5,ac6,ac7,ac8,ac9,ac10,ac11,ac12,ac13,ac14,ac15,ac16,game_end);
+	type ready_state is (r1,r2);
+	signal r_state,r_new_state:ready_state;
 	signal state,new_state:clr_state;
+	signal cover_in,flag_in:std_logic;
 	signal cursor_buff:std_logic_vector(7 downto 0);
 	signal already_uncov:std_logic;
+	signal ready:std_logic;
 	signal border:std_logic;
 	signal borderdir:std_logic_vector(2 downto 0);
 begin
@@ -15,14 +19,37 @@ begin
 		if(clk'event and clk='1') then					
 			if reset='1' then
 				state<=game_start;
-			elsif calc_ready='1' then
+				r_state<=r1;
+			elsif ready='1' then
 				state<=new_state;
 			else
 				state<=state;
+				r_state<=r_new_state;
 			end if;
 		end if;
 	end process;
 
+	rdy:process(calc_ready,r_state,r_new_state)
+	begin
+		case r_state is
+			when r1=>
+				if calc_ready='1' then
+					ready<='1';
+					r_new_state<=r2;
+				else
+					ready<='0';
+					r_new_state<=r1;
+				end if;
+			when r2=>
+				if stop='1' then
+					r_new_state<=r1;
+					ready<='0';
+				else
+					r_new_state<=r2;
+				end if;
+		end case;
+	end process;
+	
 	clr:process(state,new_state,controller_in,cursor_in,start)
 	begin
 		case state is
@@ -55,8 +82,13 @@ begin
 				write<='0';
 				cofl<='0';
 				pass<='0';
-				cover_out<=cover_in;
-				new_state<=req_fl;
+				cover_out<=mem_in;
+				cover_in<=mem_in;
+				if mem_in='0' then
+					new_state<=waiting;
+				else
+					new_state<=req_fl;
+				end if;
 			when req_fl=>
 				cursor_out<=cursor_buff;
 				write<='0';
@@ -68,7 +100,8 @@ begin
 				write<='0';
 				cofl<='1';
 				pass<='0';
-				flag_out<=flag_in;
+				flag_out<=mem_in;
+				flag_in<=mem_in;
 				new_state<=waiting;
 			when waiting=>
 				game_over<='0';
@@ -80,7 +113,7 @@ begin
 					new_state<=update_cursor;
 				elsif controller_in="100" and flag_in='0' and already_uncov='0' then		--uncover only when no flag and covered
 					new_state<=uncover;
-				elsif controller_in="101" then				--flag when no flag, unflag when flag
+				elsif controller_in="101" and cover_in='1' then				--flag when no flag, unflag when flag
 					if flag_in='0' then
 						new_state<=flag;
 					else 

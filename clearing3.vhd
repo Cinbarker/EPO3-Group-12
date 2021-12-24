@@ -10,13 +10,13 @@ port (	clk 	: in std_logic;
 
 		controller_in : in std_logic_vector(2 downto 0);
 	
-		cover_in	: in std_logic;  					
-		flag_in		: in std_logic;				
+		mem_in	: in std_logic;  							
 		mine_in		: in std_logic;				
 		number_in	: in std_logic_vector(3 downto 0);				
 		start: in std_logic; 
 
 		cursor_in	: in std_logic_vector(7 downto 0);
+		stop: in std_logic;
 		
 		write: out std_logic;
 		cofl: out std_logic;			
