@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 
 architecture behaviour of adjacent_mines is
-	type c_state is (start_state,req_mine1,req_mine2,read_mine1,read_mine2,calcnr,read_nr,output_nr,shift_row1);
+	type c_state is (start_state,req_mine1,req_mine2,read_mine1,read_mine2,calcnr,read_nr,output_nr,shift_row1,shift_row2,clear_row);
 	signal state,new_state:c_state;
 	signal mines_row1,new_mines_row1,mines_row2,new_mines_row2,mines_row3,new_mines_row3:std_logic_vector(15 downto 0);
 	signal cellpos,new_cellpos:unsigned(7 downto 0);
@@ -167,60 +167,60 @@ begin
 				new_nr13<=( ("000"&mines_row1(12)) + ("000"&mines_row1(13)) + ("000"&mines_row1(14)) + ("000"&mines_row2(12)) + ("000"&mines_row2(14)) + ("000"&mines_row3(12)) + ("000"&mines_row3(13)) + ("000"&mines_row3(14)) );
 				new_nr14<=( ("000"&mines_row1(13)) + ("000"&mines_row1(14)) + ("000"&mines_row1(15)) + ("000"&mines_row2(13)) + ("000"&mines_row2(15)) + ("000"&mines_row3(13)) + ("000"&mines_row3(14)) + ("000"&mines_row3(15)) );
 				new_nr15<=( ("000"&mines_row1(14)) + ("000"&mines_row1(15)) + 										       ("000"&mines_row2(14)) + 							 ("000"&mines_row3(14)) + ("000"&mines_row3(15)) 									  );
-				a<=to_unsigned(to_integer(unsigned(pos_in)) mod 16 ,4);				--convert input to column number
 				new_state<=read_nr;
 			when read_nr=>					--output requested number
 				new_rowcnt1<=rowcnt1;
 				new_cellpos<=cellpos;
 				row_ready<='1';
+				nr_out_ready<='0';
 				if next_row='1' then
 					new_state<=shift_row1;
-				elsif a = "0000" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 0 then
 					nr_out<=nr0;
 					new_state<=output_nr;
-				elsif a = "0001" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 1 then
 					nr_out<=nr1;
 					new_state<=output_nr;
-				elsif a = "0010" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 2 then
 					nr_out<=nr2;
 					new_state<=output_nr;
-				elsif a = "0011" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 3 then
 					nr_out<=nr3;
 					new_state<=output_nr;
-				elsif a = "0100" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 4 then
 					nr_out<=nr4;
 					new_state<=output_nr;
-				elsif a = "0101" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 5 then
 					nr_out<=nr5;
 					new_state<=output_nr;
-				elsif a = "0110" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 6 then
 					nr_out<=nr6;
 					new_state<=output_nr;
-				elsif a = "0111" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 7 then
 					nr_out<=nr7;
 					new_state<=output_nr;
-				elsif a = "1000" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 8 then
 					nr_out<=nr8;
 					new_state<=output_nr;
-				elsif a = "1001" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 9 then
 					nr_out<=nr9;
 					new_state<=output_nr;
-				elsif a = "1010" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 10 then
 					nr_out<=nr10;
 					new_state<=output_nr;
-				elsif a = "1011" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 11 then
 					nr_out<=nr11;
 					new_state<=output_nr;
-				elsif a = "1100" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 12 then
 					nr_out<=nr12;
 					new_state<=output_nr;
-				elsif a = "1101" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 13 then
 					nr_out<=nr13;
 					new_state<=output_nr;
-				elsif a = "1110" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 14 then
 					nr_out<=nr14;
 					new_state<=output_nr;
-				elsif a = "1111" then
+				elsif (to_integer(unsigned(pos_in)) mod 16) = 15 then
 					nr_out<=nr15;
 					new_state<=output_nr;
 				else
@@ -269,12 +269,22 @@ begin
 					new_state<=read_nr;
 				end if;
 			when shift_row1=>				--shift row 2 to row 1
-				new_rowcnt1<=rowcnt1+to_unsigned(1,8);
 				new_cellpos<=cellpos;
 				row_ready<='0';
 				nr_out_ready<='0';
 				new_mines_row1<=mines_row2;
+				new_state<=shift_row2;
+			when shift_row2=>				--shift row 3 to row 2
+				new_cellpos<=cellpos;
+				row_ready<='0';
+				nr_out_ready<='0';
 				new_mines_row2<=mines_row3;
+				new_state<=clear_row;
+			when clear_row=>				--clear row 3
+				new_rowcnt1<=rowcnt1+to_unsigned(1,8);
+				new_cellpos<=cellpos;
+				row_ready<='0';
+				nr_out_ready<='0';
 				new_mines_row3<=std_logic_vector(to_unsigned(0,16));
 				new_state<=req_mine2;
 		end case;
