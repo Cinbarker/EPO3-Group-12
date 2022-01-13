@@ -15,4 +15,3 @@ entity controller_fsm is
 
         line_out : out std_logic_vector(2 downto 0));
 end controller_fsm;
-
