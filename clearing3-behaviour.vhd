@@ -51,7 +51,7 @@ begin
 		end case;
 	end process;
 
-	
+	--comment
 	clr: process(state,new_state,controller_in,cursor_in,start)
 	begin
 		game_over <= '0';
